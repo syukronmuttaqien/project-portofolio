@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Syukron Muttaqien — Selected Works</title>
+<meta name="description" content="Portfolio of Syukron Muttaqien — Senior Software Engineer specializing in mobile development. Selected projects across EdTech, logistics, F&B, and health & fitness." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg:        #0e0e0c;
+    --bg-deep:   #08080700;
+    --ink:       #f4f1ea;
+    --ink-soft:  #c9c4b8;
+    --ink-mute:  #7a766c;
+    --rule:      #2a2823;
+    --accent:    #c8ff3a;          /* electric lime */
+    --accent-dim:#8aac1f;
+    --warm:      #ffb480;          /* peach for tags */
+    --serif:     'Fraunces', 'Times New Roman', serif;
+    --mono:      'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* subtle paper-grain texture */
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(200,255,58,0.04), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(255,180,128,0.03), transparent 50%);
+    background-attachment: fixed;
+  }
+
+  /* film grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ========== TOP BAR ========== */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    opacity: 0;
+    animation: fadeDown 0.8s 0.1s ease forwards;
+  }
+  .topbar .brand {
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar .brand .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .topbar .meta { display: flex; gap: 28px; }
+  .topbar .meta span:last-child { color: var(--ink); }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    padding: 80px 0 60px;
+    position: relative;
+  }
+  .hero .marker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.3s ease forwards;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(48px, 8.5vw, 124px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .hero h1 .line {
+    display: block;
+    overflow: hidden;
+  }
+  .hero h1 .line span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+  .hero h1 .line:nth-child(1) span { animation-delay: 0.4s; }
+  .hero h1 .line:nth-child(2) span { animation-delay: 0.55s; }
+  .hero h1 .line:nth-child(3) span { animation-delay: 0.7s; }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .hero .lede {
+    margin-top: 40px;
+    max-width: 640px;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s ease forwards;
+  }
+
+  .hero .badges {
+    display: flex;
+    gap: 12px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 1.15s ease forwards;
+  }
+  .hero .badges span {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    transition: all 0.3s ease;
+  }
+  .hero .badges span:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ========== SECTION HEADER ========== */
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 60px 0 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .section-head .label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .section-head .title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .section-head .count {
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+  }
+
+  /* ========== PROJECTS ========== */
+  .projects {
+    padding-bottom: 80px;
+  }
+
+  .project {
+    border-top: 1px solid var(--rule);
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: 80px 1fr 1.4fr 200px;
+    gap: 32px;
+    align-items: start;
+    transition: background 0.5s ease;
+    position: relative;
+    cursor: default;
+  }
+
+  .project::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .project:hover::after { transform: scaleX(1); }
+
+  .project:hover { background: rgba(200, 255, 58, 0.015); }
+
+  .project .num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mute);
+    padding-top: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .project .ident {
+    padding-top: 2px;
+  }
+  .project .ident h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 10px;
+    transition: color 0.4s ease;
+  }
+  .project:hover .ident h3 { color: var(--accent); }
+
+  .project .ident .role {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .project .ident .role .now {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    padding: 2px 8px 2px 6px;
+    border: 1px solid var(--accent-dim);
+    border-radius: 999px;
+    background: rgba(200, 255, 58, 0.06);
+  }
+  .project .ident .role .now::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .project .ident .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .project .ident .stack span {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    background: rgba(255, 180, 128, 0.08);
+    color: var(--warm);
+    border-radius: 3px;
+  }
+
+  .project .body {
+    padding-top: 6px;
+  }
+  .project .body p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.7;
+    font-family: var(--mono);
+  }
+  .project .body .industry {
+    display: inline-block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin-bottom: 10px;
+  }
+  .project .body .industry::before {
+    content: "// ";
+    color: var(--accent-dim);
+    font-style: normal;
+  }
+
+  .project .links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 6px;
+  }
+  .project .links a,
+  .project .links span.link-disabled {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 9px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .project .links a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+    z-index: -1;
+  }
+  .project .links a:hover {
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .project .links a:hover::before { transform: translateX(0); }
+
+  .project .links a .arrow {
+    transition: transform 0.3s ease;
+  }
+  .project .links a:hover .arrow { transform: translate(3px, -3px); }
+
+  .project .links span.link-disabled {
+    color: var(--ink-mute);
+    border-style: dashed;
+    cursor: not-allowed;
+  }
+
+  /* reveal-on-scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 60px 0 40px;
+    margin-top: 40px;
+  }
+  footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  footer .cta {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(36px, 6vw, 84px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  footer .cta em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  footer .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    text-align: right;
+  }
+  footer .contacts a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+  footer .contacts a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  footer .colophon {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes rise {
+    from { transform: translateY(110%); }
+    to   { transform: translateY(0); }
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .container { padding: 0 20px; }
+    .project {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 32px 0;
+    }
+    .project .num { padding-top: 0; font-size: 11px; }
+    .project .ident h3 { font-size: 26px; }
+    .project .links { flex-direction: row; flex-wrap: wrap; }
+    .project .links a,
+    .project .links span.link-disabled { flex: 1; min-width: 130px; }
+    .topbar .meta { gap: 14px; font-size: 10px; }
+    .hero { padding: 50px 0 40px; }
+    footer .row { flex-direction: column; align-items: start; }
+    footer .contacts { text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    .hero h1 .line span { transform: translateY(0); }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand"><span class="dot"></span> SYUKRON.M</div>
+    <div class="meta">
+      <span>BOGOR — ID</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="marker">— Selected Works</div>
+    <h1>
+      <span class="line"><span>Mobile apps,</span></span>
+      <span class="line"><span>shipped to <em>millions</em>.</span></span>
+      <span class="line"><span>Built across 8 years.</span></span>
+    </h1>
+    <p class="lede">
+      Senior Software Engineer specializing in React Native, Flutter, and native mobile.
+      Below is a curated selection of products I've engineered, architected, and shipped — spanning
+      EdTech, logistics, F&amp;B, veterinary telehealth, and health &amp; fitness.
+    </p>
+    <div class="badges">
+      <span>React Native</span>
+      <span>Flutter</span>
+      <span>iOS / Android</span>
+      <span>Node.js</span>
+      <span>TypeScript</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects">
+
+    <div class="section-head">
+      <span class="label">§ 02</span>
+      <h2 class="title">The Work</h2>
+      <span class="count">04 PROJECTS</span>
+    </div>
+
+    <!-- 01 -->
+    <article class="project reveal">
+      <div class="num">01 / 04</div>
+      <div class="ident">
+        <h3>Kejar.id</h3>
+        <div class="role">Lead Mobile Developer</div>
+        <div class="stack">
+          <span>Flutter</span>
+          <span>GetX</span>
+          <span>REST API</span>
+        </div>
+      </div>
+      <div class="body">
+        <span class="industry">EdTech · Teacher gradebook companion</span>
+        <p>
+          Also known as <em>Kejar.id untuk Guru</em> — a Flutter-based companion app used by
+          teachers to monitor and manage their students' scores. Built from scratch and led a
+          2-person team through the full development lifecycle.
+        </p>
+      </div>
+      <div class="links">
+        <a href="https://play.google.com/store/apps/details?id=com.kejarguru&hl=id" target="_blank" rel="noopener">
+          <span>Google Play</span><span class="arrow">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="project reveal">
+      <div class="num">02 / 04</div>
+      <div class="ident">
+        <h3>SiCepat Ekspres</h3>
+        <div class="role">Mobile Engineer · Super App</div>
+        <div class="stack">
+          <span>React Native</span>
+          <span>MobX</span>
+        </div>
+      </div>
+      <div class="body">
+        <span class="industry">Logistics · Consumer super app</span>
+        <p>
+          Maintained and developed a Super App with 30,000+ active users. Served as PIC for
+          User Acquisition &amp; Retention features including the Voucher and Points system.
+          Held crash-free rate above 95% through systematic refactoring and review.
+        </p>
+      </div>
+      <div class="links">
+        <a href="https://apps.apple.com/id/app/sicepat-ekspres/id1608647889" target="_blank" rel="noopener">
+          <span>App Store</span><span class="arrow">↗</span>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.sicepat.consumer&hl=en&gl=US" target="_blank" rel="noopener">
+          <span>Google Play</span><span class="arrow">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="project reveal">
+      <div class="num">03 / 04</div>
+      <div class="ident">
+        <h3>CATA — White Label</h3>
+        <div class="role">Mobile Developer</div>
+        <div class="stack">
+          <span>React Native</span>
+          <span>Expo</span>
+          <span>Zustand</span>
+          <span>White Label</span>
+          <span>Multi-tenant</span>
+        </div>
+      </div>
+      <div class="body">
+        <span class="industry">F&amp;B · Multi-brand white-label platform</span>
+        <p>
+          A configurable white-label F&amp;B ordering platform shipped under multiple brands —
+          including Guzman y Gomez Singapore. Single codebase, customized identity per
+          deployment, live across iOS and Android stores.
+        </p>
+      </div>
+      <div class="links">
+        <a href="https://apps.apple.com/id/app/guzman-y-gomez-singapore/id6740809032" target="_blank" rel="noopener">
+          <span>App Store</span><span class="arrow">↗</span>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.sambatechnologies.gyg&hl=id" target="_blank" rel="noopener">
+          <span>Google Play</span><span class="arrow">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- 04 -->
+    <article class="project reveal">
+      <div class="num">04 / 04</div>
+      <div class="ident">
+        <h3>CloudFit</h3>
+        <div class="role">
+          <span>Senior Frontend Developer</span>
+          <span class="now">NOW</span>
+        </div>
+        <div class="stack">
+          <span>React Native</span>
+          <span>Expo</span>
+          <span>Zustand</span>
+          <span>AI-driven</span>
+        </div>
+      </div>
+      <div class="body">
+        <span class="industry">Health &amp; Fitness · AI coaching platform</span>
+        <p>
+          AI-powered health coaching mobile app, built and refined for iOS and Android.
+          Translating AI-driven product capabilities into intuitive mobile features in
+          partnership with the CTO and cross-functional teams.
+        </p>
+      </div>
+      <div class="links">
+        <a href="https://apps.apple.com/us/app/cloudfit-ai-health-coach/id6475968755" target="_blank" rel="noopener">
+          <span>App Store</span><span class="arrow">↗</span>
+        </a>
+        <span class="link-disabled">
+          <span>Android — Submitting</span><span>·</span>
+        </span>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="row">
+      <div class="cta">
+        Have a project<br/><em>in mind?</em>
+      </div>
+      <div class="contacts">
+        <a href="mailto:syukronmuttaqien74@gmail.com">syukronmuttaqien74@gmail.com</a>
+        <a href="https://linkedin.com/in/syukronmuttaqien" target="_blank" rel="noopener">linkedin.com/in/syukronmuttaqien ↗</a>
+        <a href="tel:+6282113998627">+62 821-1399-8627</a>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 SYUKRON MUTTAQIEN</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Reveal-on-scroll using IntersectionObserver — lightweight, no deps
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // Tiny easter egg: a console hello for fellow devs
+  console.log(
+    '%c hi. ',
+    'background:#c8ff3a;color:#0e0e0c;padding:4px 10px;font-family:monospace;font-weight:bold;border-radius:3px;'
+  );
+  console.log('Built by Syukron Muttaqien — syukronmuttaqien74@gmail.com');
+</script>
+
+</body>
+</html>
